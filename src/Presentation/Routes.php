@@ -73,7 +73,6 @@ class Routes {
     }
 
     public function createTask(Http\Request $request, Http\Response $response) {
-
         $task = $this->getTaskFromRequest($request);
       
         try {
@@ -162,9 +161,6 @@ class Routes {
             $this->respondError($response, $e->getMessage(), [], 500);
         }
     }
-
-
-
 
 
     public function updateTask(Http\Request $request, Http\Response $response)

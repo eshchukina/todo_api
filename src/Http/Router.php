@@ -6,15 +6,11 @@ class Router {
     private $routes;
 
     public function __construct() {
-
         $this->routes = [];
-
     }
 
     public function register($method, $url, $handlers) {
-
         $this->routes[$method][$url] = $handlers;
-
     }
 
     public function exec() {
@@ -28,11 +24,9 @@ class Router {
         }
         call_user_func($handler, $request, $response);
         $this->respoond($response);
-
     }
 
     private function getHandler(Request $request) {
-
         if (empty($this->routes[$request->getMethod()])) {
             return null;
         } 
@@ -51,7 +45,6 @@ class Router {
     }
 
     private function notFoundHandler(Request $request, Response $response) {
-
         $response->setStatus(404);
         $response->setBody([
             'error' => 'not found',
