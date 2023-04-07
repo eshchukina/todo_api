@@ -2,7 +2,7 @@
 .PHONY: run stop runl
 
 run:
-	docker run -d --rm --name todo-php --network dev -v C:/Users/frank/workspace/http_server:/var/www phpfpm
+	docker run -d --rm --name todo-php --network dev -v C:/Users/frank/workspace/todo_api:/var/www phpfpm
 
 runl:
 	docker run -d --rm --name php-fpm-app --network dev -v $(PWD):/var/www phpfpm

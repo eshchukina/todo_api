@@ -42,8 +42,7 @@ try {
     $router->register('PUT', '/^\/tasks\/([0-9]+)$/', [$routes, 'updateTask']);
     $router->register('DELETE', '/^\/tasks\/([0-9]+)$/', [$routes, 'deleteTask']);
 
-    $router->register('POST', '/comments', [$routes, 'createComment']);//
-    //$router->register('GET', '/^\/comments\/([0-9]+)$/', [$routes, 'getComment']);
+    $router->register('POST', '/^\/tasks\/([0-9]+)\/comments$/', [$routes, 'createComment']);
     $router->register('GET', '/^\/tasks\/([0-9]+)\/comments$/', [$routes, 'getComment']);
 
     $router->register('POST', '/users', [$routes, 'createUser']);
