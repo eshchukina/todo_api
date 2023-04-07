@@ -73,7 +73,6 @@ class Routes {
     }
 
     public function createTask(Http\Request $request, Http\Response $response) {
-
         $task = $this->getTaskFromRequest($request);
       
         try {
@@ -152,20 +151,16 @@ class Routes {
     public function getComment(Http\Request $request, Http\Response $response)
     {
         $url = $request->getUrl();
-         $task_id = preg_replace('/[^0-9]/', '', $url);
-        // $url = $request->getUrl();
-        // $task_id = substr($url, 10);
+        preg_match("/\/([0-9]+)\//", $url, $matches);
 
+        $taskId = $matches[1];
         try {
-            $comments = $this->app->getComment($task_id);
+            $comments = $this->app->getComment($taskId);
             $this->respoond($response, $comments, 200);
         } catch (\Exception $e) {
             $this->respondError($response, $e->getMessage(), [], 500);
         }
     }
-
-
-
 
 
     public function updateTask(Http\Request $request, Http\Response $response)
