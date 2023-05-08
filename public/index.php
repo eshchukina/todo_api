@@ -1,9 +1,15 @@
 <?php
 
-function autoload_src($class_name) {
-    require  '../src/' . implode('/', explode('\\', $class_name)) . '.php';
-}
-spl_autoload_register('autoload_src');
+// function autoload_src($class_name) {
+//     require  '../src/' . implode('/', explode('\\', $class_name)) . '.php';
+
+
+   
+// }
+//     spl_autoload_register('autoload_src');
+    
+
+ require('../vendor/autoload.php');
 
 $host = 'mysql_server';
 $dbname = 'todolist';
@@ -19,18 +25,37 @@ try {
     $storageEvent = new Storage\SqlEventLog($pdo);
     $storageUser = new Storage\SqlUser($pdo);
 
-    $taskFilter = new Filter\CompositeFilter();
-    $taskFilter->add(new Filter\TrimFilter());
-    $taskFilter->add(new Filter\UpperFilter());
+    $taskFilter = new Filter\InputFilter();
+    $taskFilter->add('title', [new Filter\TrimFilter()]);
+    $taskFilter->add('title', [new Filter\UpperFilter()]);
+    $taskFilter->add('description', [new Filter\TrimFilter()]);
 
-    $taskValidator = new Validator\CompositeValidator();
-    $taskValidator->add(new Validator\TitleLenght());
-    $taskValidator->add(new Validator\DescriptionLenght());
+    $commentFilter = new Filter\InputFilter();
+    $commentFilter->add('message', [new Filter\TrimFilter()]);
+  
+    $userFilter = new Filter\InputFilter();
+    $userFilter->add('name', [new Filter\TrimFilter()]);
+    $userFilter->add('name', [new Filter\UpperFilter()]);
+    $userFilter->add('surname', [new Filter\TrimFilter()]);
+    $userFilter->add('surname', [new Filter\UpperFilter()]);
+
+    // $taskFilter = new Filter\CompositeFilter();
+    // $taskFilter->add(new Filter\TrimFilter());
+    // $taskFilter->add(new Filter\UpperFilter());
+
+    // $taskValidator = new Validator\CompositeValidator();
+    // $taskValidator->add(new Validator\TitleLenght());
+    // $taskValidator->add(new Validator\DescriptionLenght());
+
+    $taskValidator = new Validator\inputValidator();
+    $taskValidator->add('title', [new Validator\LenghtValidator(5, 30)]);
+    $taskValidator->add('description', [new Validator\LenghtValidator(10, 60)]);
+ 
 
     $taskNotificator = new Notificator\CompositeEvents();
     $taskNotificator->add(new Notificator\Notifier($storageEvent));
     
-    $app = new App\App($storageTask, $storageComment, $taskFilter, $taskValidator, $taskNotificator, $storageUser);
+    $app = new App\App($storageTask, $storageComment, $taskFilter, $commentFilter, $userFilter, $taskValidator, $taskNotificator, $storageUser);
 
     $routes = new Presentation\Routes($app);
 
@@ -49,6 +74,9 @@ try {
     $router->register('GET', '/users', [$routes, 'getUserList']);
     $router->register('GET', '/^\/users\/([0-9]+)$/', [$routes, 'getUser']);
     $router->register('DELETE', '/^\/users\/([0-9]+)$/', [$routes, 'deleteUser']);
+
+    
+
 
     $router->exec();
 

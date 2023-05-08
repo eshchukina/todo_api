@@ -8,8 +8,8 @@ namespace App;
     private $title;
     private $description;
     private $status;
-    private $author_id; //author
-    private $executor_id; //assignee
+    private $author; //author
+    private $assignee; //assignee
     private $start_time;
     private $end_time;
 
@@ -19,9 +19,9 @@ namespace App;
         $task->id = $arr['id'];
         $task->title = $arr['title'];
         $task->description = $arr['description'];
-        $task->author_id = $arr['author_id'];
-        $task->executor_id = $arr['executor_id'];
         $task->status = $arr['status'];
+        $task->author = $arr['author'];
+        $task->assignee = $arr['assignee'];
         $task->start_time = $arr['start_time'];
         $task->end_time = $arr['end_time'];
 
@@ -76,6 +76,41 @@ namespace App;
 
     }
 
+    public function getAuthor() {
+
+       return $this->author;
+
+    }
+    public function setAuthor($author) {
+
+        $this->author = $author;
+
+    }
+   
+    public function getAssignee() {
+
+        return $this->assignee;
+ 
+     }
+     public function setAssignee($assignee) {
+ 
+         $this->assignee = $assignee;
+ 
+     }
+    
+ 
+
+     public function getStartTime() {
+
+        return $this->start_time;
+    }
+
+    public function setStartTime($start_time) {
+
+        $this->start_time = $start_time;
+
+    }
+
     public function getEndTime() {
 
         return $this->end_time;
@@ -87,37 +122,18 @@ namespace App;
 
     }
 
-    public function getAuthorId() {
-
-        return $this->author_id;
-
-    }
-
-    public function setAuthorId($author_id) {
-
-        $this->author_id = $author_id;
-
-    }
-
-    public function getExecutorId() {
-
-        return $this->executor_id;
-
-    }
    
-    public function setExecutorId($executor_id) {
 
-        $this->executor_id = $executor_id;
-
-    }
+    
 
     function jsonSerialize(): mixed {
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'author_id' => $this->author_id,
-            'executor_id' => $this->executor_id,
             'description' => $this->description,
+            'status' => $this->status,
+            'author' => $this->author,
+            'assignee' => $this->assignee,
             'start_time' => $this->start_time, 
             'end_time' => $this->end_time,
         ];

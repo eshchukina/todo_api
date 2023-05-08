@@ -3,6 +3,6 @@
 namespace App;
 
 interface Filter {
-    public function isFilter($object); 
+    public function filter($value); 
  
 }

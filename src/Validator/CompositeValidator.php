@@ -14,10 +14,10 @@ class CompositeValidator implements Validator {
         $this->validators[] = $validator;
     }
 
-    public function isValid(\App\Task $task)
+    public function isValid($value)
     {  
         foreach ($this->validators as $validator) {
-            if (!$validator->isValid($task)) {
+            if (!$validator->isValid($value)) {
                 return false;
             }
         }

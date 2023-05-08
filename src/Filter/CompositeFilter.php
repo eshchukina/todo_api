@@ -13,10 +13,10 @@ class CompositeFilter implements Filter {
         $this->filters[] = $filter;
     }
 
-    public function isFilter($object) {
+    public function Filter($object) {
 
         foreach ($this->filters as $filter) {
-            if (!$filter->isFilter($object)) {
+            if (!$filter->Filter($object)) {
                 return false;
             }
         }

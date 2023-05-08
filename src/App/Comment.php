@@ -6,7 +6,7 @@ namespace App;
  class Comment implements \JsonSerializable {
     private $id;
     private $task_id;
-    private $user_id;
+    private $author;
     private $message;
     private $date;
 
@@ -15,7 +15,7 @@ namespace App;
         $comment = new static();
         $comment->id = $arr['id'];
         $comment->task_id = $arr['task_id'];
-        $comment->user_id = $arr['user_id'];
+        $comment->author = $arr['author'];
         $comment->message = $arr['message'];
         $comment->date = $arr['date'];
 
@@ -47,14 +47,14 @@ namespace App;
 
     }
 
-    public function getUserId() {
+    public function getAuthor() {
 
-        return $this->user_id;
+        return $this->author;
     }
 
-    public function setUserId($user_id) {
+    public function setAuthor($author) {
 
-        $this->user_id = $user_id;
+        $this->author = $author;
     }
 
      public function getMessage() {
@@ -85,7 +85,7 @@ namespace App;
         return [
             'id' => $this->id,
             'task_id' => $this->task_id,
-            'user_id' => $this->user_id,
+            'author' => $this->author,
             'message' => $this->message,
             'date' => $this->date,
         ];

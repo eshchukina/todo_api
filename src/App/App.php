@@ -7,14 +7,18 @@ class App {
     private $storageTask; 
     private $storageComment;
     private $filter;
-    private $validator;
+    private $commentFilter;
+    private $userFilter;
+    private $taskValidator;
     private $event;
     private $storageUser;
 
     public function __construct(TaskStorage $storageTask, 
                                 CommentStorage $storageComment, 
                                 Filter $filter, 
-                                Validator $validator, 
+                                Filter $commentFilter,
+                                Filter $userFilter,
+                                Validator $taskValidator, 
                                 Notificator $event, 
                                 UserStorage $storageUser) {  
 
@@ -22,7 +26,9 @@ class App {
         $this->storageComment = $storageComment;
         $this->event = $event;
         $this->filter = $filter;
-        $this->validator = $validator;
+        $this->commentFilter = $commentFilter;
+        $this->userFilter = $userFilter;
+        $this->taskValidator = $taskValidator;
         $this->storageUser = $storageUser;
 
     }
@@ -35,12 +41,10 @@ class App {
  
     public function addTask(Task $task) {
        
-        if (!$this->filter->isFilter($task)) {
-            throw new \Exception('Invalid task (add title filter)');
-        }
-           $this->filter->isFilter($task);
+        
+        $this->filter->filter($task);
 
-        if (!$this->validator->isValid($task)) {
+        if (!$this->taskValidator->isValid($task)) {
             throw new \Exception('Invalid task (title)');
         }
 
@@ -54,10 +58,10 @@ class App {
 
     public function addComment(Comment $comment) {
 
-        if (!$this->filter->isFilter($comment)) {
-            throw new \Exception('Invalid addComent (filter)');
-        }
-           $this->filter->isFilter($comment);
+        // if (!$this->commentFilter->filter($comment)) {
+        //     throw new \Exception('Invalid addComent (filter)');
+        // }
+           $this->commentFilter->filter($comment);
 
         $this->storageComment->addComment($comment);
 
@@ -65,10 +69,10 @@ class App {
 
     public function addUser(User $user) {    
 
-        if (!$this->filter->isFilter($user)) {            
-            throw new \Exception('Invalid addUser (filter)');
-        }
-           $this->filter->isFilter($user);
+        // if (!$this->filter->Filter($user)) {            
+        //     throw new \Exception('Invalid addUser (filter)');
+        // }
+           $this->userFilter->filter($user);
 
         $this->storageUser->addUser($user);
  
@@ -79,6 +83,11 @@ class App {
         return $this->storageComment->getComment($task_id);
 
    }
+   public function getEvent(int $task_id): array {
+
+    return $this->storageComment->getComment($task_id);
+
+}
 
     public function getTasks(): array {
 
@@ -106,12 +115,12 @@ class App {
 
     public function updateTask(Task $task) {   
 
-        if (!$this->filter->isFilter($task)) {
-            throw new \Exception('Invalid task (update title filter)');
-        }
-           $this->filter->isFilter($task);
+        // if (!$this->filter->Filter($task)) {
+        //     throw new \Exception('Invalid task (update title filter)');
+        // }
+           $this->filter->filter($task);
 
-        if (!$this->validator->isValid($task)) {
+        if (!$this->taskValidator->isValid($task)) {
             throw new \Exception('Invalid task (description)');
         }
 

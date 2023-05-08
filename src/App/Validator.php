@@ -3,6 +3,6 @@
 namespace App;
 
 interface Validator {
-    public function isValid(Task $task);
+    public function isValid($value);
 
 }

@@ -25,3 +25,35 @@ Invalid addUser (filter)
 Invalid addUser (filter)
 Invalid addUser (filter)
 Invalid addUser (filter)
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'author_id' in 'field list'
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'author_id' in 'field list'
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'author_id' in 'field list'
+SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+SQLSTATE[01000]: Warning: 1265 Data truncated for column 'status' at row 1
+SQLSTATE[01000]: Warning: 1265 Data truncated for column 'status' at row 1
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+SQLSTATE[01000]: Warning: 1265 Data truncated for column 'status' at row 1
+SQLSTATE[01000]: Warning: 1265 Data truncated for column 'status' at row 1
+SQLSTATE[01000]: Warning: 1265 Data truncated for column 'status' at row 1
+SQLSTATE[01000]: Warning: 1265 Data truncated for column 'status' at row 1
+SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'status' cannot be null
+SQLSTATE[01000]: Warning: 1265 Data truncated for column 'status' at row 1
+Invalid addComent (filter)
+Invalid addComent (filter)
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_id' in 'field list'
+SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'task_id' at row 1
+SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'task_id' at row 1
+SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'author' at row 1
+Invalid addUser (filter)
+Invalid task (title)
+Invalid task (title)
+Invalid task (title)
+Invalid task (title)
+Invalid task (title)
+Invalid task (update title filter)
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined

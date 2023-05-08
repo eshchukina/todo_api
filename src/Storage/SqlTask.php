@@ -14,13 +14,16 @@ class SqlTask implements App\TaskStorage {
 
     public function addTask(App\Task $task) {
 
-        $statement = $this->pdo->prepare("INSERT INTO task (title, description, author_id, executor_id, start_time) VALUES (:title, :description, :author_id, :executor_id, :start_time)");
+        $statement = $this->pdo->prepare("INSERT INTO task (title, description, status, author, assignee, end_time) VALUES (:title, :description, :status, :author, :assignee, :end_time)");
         $statement->execute([
             'title' => $task->getTitle(),
             'description' => $task->getDescription(),
-            'author_id' => $task->getAuthorId(),
-            'executor_id' => $task->getExecutorId(),
-            'start_time' => date("Y-m-d H:i:s"),
+            'status' => $task->getStatus(),
+            'author' => $task->getAuthor(),
+            'assignee' => $task->getAssignee(),
+            //'start_time' => date("Y-m-d H:i:s"),
+            'end_time' => null,
+
         
         ]);
 
@@ -64,16 +67,16 @@ class SqlTask implements App\TaskStorage {
             throw new \UnexpectedValueException("cannot update task");
         }
 
-        $statement = $this->pdo->prepare("UPDATE task SET title = :title, description = :description, status = :status, author_id = :author_id, executor_id = :executor_id, end_time =:end_time WHERE id = :id");
+        $statement = $this->pdo->prepare("UPDATE task SET title = :title, description = :description, status = :status, author = :author, assignee = :assignee, end_time =:end_time WHERE id = :id");
         $statement->execute([
             'id' => $task->getId(), 
             'title' => $task->getTitle(),
             'description' => $task->getDescription(),
             'status' => $task->getStatus(),
-            'author_id' => $task->getAuthorId(),
-            'executor_id' => $task->getExecutorId(),
-            //'start_time' => date("Y-m-d H:i:s"),
+            'author' => $task->getAuthor(),
+            'assignee' => $task->getAssignee(),
             'end_time' => date("Y-m-d H:i:s"),
+           
 
         ]);
     }

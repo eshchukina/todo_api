@@ -37,6 +37,9 @@ class Routes {
             $this->respondError($response, $e->getMessage(), [], 500);
         }
     }
+    
+
+   
 
     public function getTask(Http\Request $request, Http\Response $response) {
 
@@ -54,6 +57,7 @@ class Routes {
             $this->respondError($response, $e->getMessage()."\n".$e->getFile()." ".$e->getLine()."\n".$e->getTraceAsString(), [], 500);
         }
     }
+    
 
     public function getUser(Http\Request $request, Http\Response $response) {
 
@@ -141,7 +145,7 @@ class Routes {
         $data = $request->getBody();
         $comment = new App\Comment();
         $comment->setTaskId($data['task_id'] ?? false);
-        $comment->setUserId($data['user_id'] ?? false);
+        $comment->setAuthor($data['author'] ?? false);
         $comment->setMessage($data['message'] ?? false);
         $comment->setDate($data['date'] ?? false); //????
         
@@ -230,9 +234,13 @@ class Routes {
         $task->setDescription($data['description'] ?? false);
         // 'author_id' => $task->getAuthorId(),
         //     'executor_id' => $task->getexecutorId(),
-        $task->setAuthorId($data['author_id'] ?? false);
-        $task->setExecutorId($data['executor_id'] ?? false);
         $task->setStatus($data['status'] ?? false); //????
+        $task->setAuthor($data['author'] ?? false);
+        $task->setAssignee($data['assignee'] ?? false);
+        $task->setStartTime($data['start_time'] ?? false);
+        $task->setEndTime($data['end_time'] ?? false);
+        
+       
         // TODO: set the rest of the fields
 
         // $data = $request->getBody();

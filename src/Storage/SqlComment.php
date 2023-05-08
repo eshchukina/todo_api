@@ -14,10 +14,10 @@ class SqlComment implements App\CommentStorage {
 
     public function addComment(App\Comment $comment) {
 
-        $statement = $this->pdo->prepare("INSERT INTO comment (task_id, user_id, message, date) VALUES (:task_id, :user_id, :message, :date)");
+        $statement = $this->pdo->prepare("INSERT INTO comment (task_id, author, message, date) VALUES (:task_id, :author, :message, :date)");
         $statement->execute([
             'task_id'=> $comment->getTaskId(),
-            'user_id'=> $comment->getUserId(),
+            'author'=> $comment->getAuthor(),
             'message'=> $comment->getMessage(),
             'date' => date("Y-m-d H:i:s"),
         ]);
