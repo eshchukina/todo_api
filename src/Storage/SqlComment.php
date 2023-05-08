@@ -1,7 +1,7 @@
 <?php
 
-namespace Storage;
-use App;
+namespace Eshchukina\TodoApi\Storage;
+use Eshchukina\TodoApi\App;
 use PDO;
 
 class SqlComment implements App\CommentStorage {

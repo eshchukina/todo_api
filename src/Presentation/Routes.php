@@ -1,7 +1,7 @@
 <?php
-namespace Presentation;
-use App;
-use Http;
+namespace Eshchukina\TodoApi\Presentation;
+use Eshchukina\TodoApi\App;
+use Eshchukina\TodoApi\Http;
 
 class Routes {
 
@@ -13,13 +13,13 @@ class Routes {
 
     }
 
-    public function appInfo(Http\Request $request, Http\Response $response) {
+    public function appInfo(\Eshchukina\TodoApi\Http\Request $request, \Eshchukina\TodoApi\Http\Response $response) {
 
         $response->setStatus(200);
         $response->setBody($this->app->info());
     }
 
-    public function getTaskList(Http\Request $request, Http\Response $response) {
+    public function getTaskList(\Eshchukina\TodoApi\Http\Request $request, \Eshchukina\TodoApi\Http\Response $response) {
 
         try {
             $tasks = $this->app->getTasks();
@@ -29,7 +29,7 @@ class Routes {
         }
     }
 
-    public function getUserList(Http\Request $request, Http\Response $response) {
+    public function getUserList(\Eshchukina\TodoApi\Http\Request $request, \Eshchukina\TodoApi\Http\Response $response) {
         try {
             $users = $this->app->getUsers();
             $this->respoond($response, $users, 200);

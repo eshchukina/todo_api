@@ -1,5 +1,5 @@
 <?php
-namespace Http;
+namespace Eshchukina\TodoApi\Http;
 
 class Response {
     private $status;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Eshchukina\TodoApi\App;
 
 interface EventStorage {
     public function addNotify(Task $task, string $event); 

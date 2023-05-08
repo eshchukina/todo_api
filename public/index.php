@@ -1,5 +1,6 @@
 <?php
 
+use Eshchukina\TodoApi\Storage;
     
 
 require('../vendor/autoload.php');
@@ -18,19 +19,19 @@ try {
     $storageEvent = new Storage\SqlEventLog($pdo);
     $storageUser = new Storage\SqlUser($pdo);
 
-    $taskFilter = new Filter\InputFilter();
-    $taskFilter->add('title', [new Filter\TrimFilter()]);
-    $taskFilter->add('title', [new Filter\UpperFilter()]);
-    $taskFilter->add('description', [new Filter\TrimFilter()]);
+    $taskFilter = new Eshchukina\TodoApi\Filter\InputFilter();
+    $taskFilter->add('title', [new Eshchukina\TodoApi\Filter\TrimFilter()]);
+    $taskFilter->add('title', [new Eshchukina\TodoApi\Filter\UpperFilter()]);
+    $taskFilter->add('description', [new Eshchukina\TodoApi\Filter\TrimFilter()]);
 
-    $commentFilter = new Filter\InputFilter();
-    $commentFilter->add('message', [new Filter\TrimFilter()]);
+    $commentFilter = new Eshchukina\TodoApi\Filter\InputFilter();
+    $commentFilter->add('message', [new Eshchukina\TodoApi\Filter\TrimFilter()]);
   
-    $userFilter = new Filter\InputFilter();
-    $userFilter->add('name', [new Filter\TrimFilter()]);
-    $userFilter->add('name', [new Filter\UpperFilter()]);
-    $userFilter->add('surname', [new Filter\TrimFilter()]);
-    $userFilter->add('surname', [new Filter\UpperFilter()]);
+    $userFilter = new Eshchukina\TodoApi\Filter\InputFilter();
+    $userFilter->add('name', [new Eshchukina\TodoApi\Filter\TrimFilter()]);
+    $userFilter->add('name', [new Eshchukina\TodoApi\Filter\UpperFilter()]);
+    $userFilter->add('surname', [new Eshchukina\TodoApi\Filter\TrimFilter()]);
+    $userFilter->add('surname', [new Eshchukina\TodoApi\Filter\UpperFilter()]);
 
     // $taskFilter = new Filter\CompositeFilter();
     // $taskFilter->add(new Filter\TrimFilter());
@@ -40,19 +41,19 @@ try {
     // $taskValidator->add(new Validator\TitleLenght());
     // $taskValidator->add(new Validator\DescriptionLenght());
 
-    $taskValidator = new Validator\inputValidator();
-    $taskValidator->add('title', [new Validator\LenghtValidator(5, 30)]);
-    $taskValidator->add('description', [new Validator\LenghtValidator(10, 60)]);
+    $taskValidator = new Eshchukina\TodoApi\Validator\inputValidator();
+    $taskValidator->add('title', [new Eshchukina\TodoApi\Validator\LenghtValidator(5, 30)]);
+    $taskValidator->add('description', [new Eshchukina\TodoApi\Validator\LenghtValidator(10, 60)]);
  
 
-    $taskNotificator = new Notificator\CompositeEvents();
-    $taskNotificator->add(new Notificator\Notifier($storageEvent));
+    $taskNotificator = new Eshchukina\TodoApi\Notificator\CompositeEvents();
+    $taskNotificator->add(new Eshchukina\TodoApi\Notificator\Notifier($storageEvent));
     
-    $app = new App\App($storageTask, $storageComment, $taskFilter, $commentFilter, $userFilter, $taskValidator, $taskNotificator, $storageUser);
+    $app = new Eshchukina\TodoApi\App\App($storageTask, $storageComment, $taskFilter, $commentFilter, $userFilter, $taskValidator, $taskNotificator, $storageUser);
 
-    $routes = new Presentation\Routes($app);
+    $routes = new Eshchukina\TodoApi\Presentation\Routes($app);
 
-    $router = new Http\Router();
+    $router = new Eshchukina\TodoApi\Http\Router();
     $router->register('GET', '/', [$routes, 'appInfo']);
     $router->register('POST', '/tasks', [$routes, 'createTask']);
     $router->register('GET', '/tasks', [$routes, 'getTaskList']);

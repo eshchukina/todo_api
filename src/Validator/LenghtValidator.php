@@ -14,8 +14,8 @@
 //     }
 // }
 
-namespace Validator;
-use App\Validator;
+namespace Eshchukina\TodoApi\Validator;
+use Eshchukina\TodoApi\App\Validator;
 
 class LenghtValidator implements Validator {
     private $minLength;

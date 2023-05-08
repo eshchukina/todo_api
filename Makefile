@@ -20,5 +20,6 @@ stop:
 	docker stop php-fpm-app
 
 composer_cmd:
-	docker run --rm --interactive --tty -v C:/Users/frank/workspace/todo_api:/app composer init
+	docker run --rm --interactive --tty -v C:/Users/frank/workspace/todo_api:/app -v C:/Users/frank/workspace/todo_api/tmp:/tmp composer init
+	docker run --rm --interactive --tty -v C:/Users/frank/workspace/todo_api:/app -v C:/Users/frank/workspace/todo_api/tmp:/tmp composer update
 	

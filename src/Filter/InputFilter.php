@@ -1,8 +1,8 @@
 <?php
 
-namespace Filter;
+namespace Eshchukina\TodoApi\Filter;
 
-use App\Filter;
+use Eshchukina\TodoApi\App\Filter;
 
 class InputFilter implements Filter
 {

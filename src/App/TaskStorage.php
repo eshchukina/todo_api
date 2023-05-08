@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Eshchukina\TodoApi\App;
 
 interface TaskStorage {
     public function addTask(Task $task);

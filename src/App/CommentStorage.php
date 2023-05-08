@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Eshchukina\TodoApi\App;
 
 interface CommentStorage  {
     public function addComment(Comment $comment); 

@@ -1,15 +1,15 @@
 <?php 
-namespace Notificator;
-use App\Notificator;
+namespace Eshchukina\TodoApi\Notificator;
+use Eshchukina\TodoApi\App\Notificator;
 
 class Notifier implements Notificator {   
     private $eventStorage;
     
-    public function __construct(\App\EventStorage $eventStorage) {
+    public function __construct(\Eshchukina\TodoApi\App\EventStorage $eventStorage) {
         $this->eventStorage = $eventStorage;
     }
 
-    public function notify(\App\Task $task, string $event) {
+    public function notify(\Eshchukina\TodoApi\App\Task $task, string $event) {
         
         return $this->eventStorage->addNotify($task, $event);
     }

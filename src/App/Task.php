@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Eshchukina\TodoApi\App;
 
 
  class Task implements \JsonSerializable {

@@ -1,6 +1,6 @@
 <?php
-namespace Filter;
-use App\Filter;
+namespace Eshchukina\TodoApi\Filter;
+use Eshchukina\TodoApi\App\Filter;
 
 class CompositeFilter implements Filter {
     private $filters;

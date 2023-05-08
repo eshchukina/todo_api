@@ -1,8 +1,8 @@
 <?php
 
-namespace Validator;
+namespace Eshchukina\TodoApi\Validator;
 
-use App\Validator;
+use Eshchukina\TodoApi\App\Validator;
 
 class InputValidator implements Validator
 {

@@ -1,6 +1,6 @@
 <?php
-namespace Notificator;
-use App\Notificator;
+namespace Eshchukina\TodoApi\Notificator;
+use Eshchukina\TodoApi\App\Notificator;
 
 class CompositeEvents implements Notificator {
     private $events;
@@ -13,7 +13,7 @@ class CompositeEvents implements Notificator {
         $this->events[] = $event;
     }
 
-    public function notify(\App\Task $task, string $event) {
+    public function notify(\Eshchukina\TodoApi\App\Task $task, string $event) {
         
         foreach ($this->events as $enent) {
             $enent->notify($task, $event);

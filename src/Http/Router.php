@@ -1,6 +1,6 @@
 <?php
 
-namespace Http;
+namespace Eshchukina\TodoApi\Http;
 
 class Router {
     private $routes;

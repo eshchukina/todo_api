@@ -1,9 +1,9 @@
 <?php 
-namespace Filter;
+namespace Eshchukina\TodoApi\Filter;
 use App\Task;
 use App\Comment;
 use App\User;
-use App\Filter;;
+use Eshchukina\TodoApi\App\Filter;;
 
 
 class UpperFilter implements Filter {
