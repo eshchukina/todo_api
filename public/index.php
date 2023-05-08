@@ -1,15 +1,8 @@
 <?php
 
-// function autoload_src($class_name) {
-//     require  '../src/' . implode('/', explode('\\', $class_name)) . '.php';
-
-
-   
-// }
-//     spl_autoload_register('autoload_src');
     
 
- require('../vendor/autoload.php');
+require('../vendor/autoload.php');
 
 $host = 'mysql_server';
 $dbname = 'todolist';
